@@ -92,6 +92,19 @@ class ValuationTests(unittest.TestCase):
         value = model.dcf(model.project(hist, a2), a2, bridge, 1000.0, wacc)["per_share"]
         self.assertAlmostEqual(value, target, places=3)
 
+    def test_value_bridge_ends_at_target_and_forecast_free_check_inverts(self):
+        _, _, hist, a = ant_case()
+        bridge = model.equity_bridge(hist)
+        steps = model.value_bridge(hist, a, bridge, 1000.0, 0.12, 1500.0)
+        self.assertEqual(steps[-1]["label"], "Faster revenue growth")
+        self.assertAlmostEqual(steps[-1]["value"], 1500.0)
+        # Each loosening step should not lower the value
+        values = [s["value"] for s in steps[:-1]]
+        self.assertTrue(all(b >= a_ - 1e-9 for a_, b in zip(values, values[1:])))
+        # EV = FCF (1+g) / (WACC - g) round-trips
+        g = model.implied_perpetual_growth(1000.0, 30.0, 0.09)
+        self.assertAlmostEqual(30.0 * (1 + g) / (0.09 - g), 1000.0)
+
     def test_value_falls_as_wacc_rises(self):
         _, _, hist, a = ant_case()
         proj = model.project(hist, a)

@@ -264,6 +264,22 @@ def main() -> None:
     elif price and not equity_mode:
         lines += [section("REVERSE DCF"), "  No growth shift in [-50%, +150%] reproduces the current price."]
 
+    # Sanity check: does the gap to the price come from the model or from the market's expectations?
+    value_bridge, sanity = [], {}
+    if price and not equity_mode and ev_now:
+        value_bridge = model.value_bridge(hist, a, bridge, value_shares, wacc, price)
+        fcf_ltm = hist.cashflow.loc["Free cash flow (CFO - capex)"].iloc[-1]
+        sanity = {"fcf": float(fcf_ltm), "market_ev": ev_now, "fcf_yield": fcf_ltm / ev_now,
+                  "implied_perpetual_growth": model.implied_perpetual_growth(ev_now, fcf_ltm, wacc)}
+        lines.append(section("SANITY CHECK: from the base case to the share price"))
+        lines.append(f"  Forecast-free check: {base_label} FCF ${fcf_ltm:,.0f}m on market EV ${ev_now:,.0f}m is a "
+                     f"{sanity['fcf_yield']:.1%} yield. At a {wacc:.1%} WACC the price needs FCF to grow "
+                     f"{sanity['implied_perpetual_growth']:.1%} a year forever.")
+        lines.append("")
+        lines.append("  Cumulative steps (each keeps the ones above):")
+        for step in value_bridge:
+            lines.append(f"  {step['label']:<28}{step['detail']:<32}${step['value']:>10,.2f}")
+
     pct_note = " (upside vs current price in brackets)" if price and not equity_mode else ""
     lines += [section(f"SENSITIVITY: {unit} - WACC vs terminal growth{pct_note}"),
               fmt_value(sens_wg, price, equity_mode).to_string()]
@@ -308,6 +324,8 @@ def main() -> None:
         "implied_year1_growth": reverse and reverse["year1_growth"],
         "implied_revenue_cagr": reverse and reverse["revenue_cagr"],
         "implied_final_year_revenue": reverse and reverse["final_year_revenue"],
+        "sanity_check": sanity or None,
+        "value_bridge": value_bridge or None,
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2, default=float))
     keys = [key for _, key in rows] + ["equity_value", "per_share", "tv_share_of_ev"]

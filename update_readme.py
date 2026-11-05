@@ -1,6 +1,6 @@
-"""Rewrite the README "Findings" section from the latest runs in output/.
+"""Rewrite the generated README sections (Findings, Sanity check) from the latest runs in output/.
 
-    python update_readme.py PLTR ANT AAPL
+    python update_readme.py PLTR ANT AAPL --sanity AAPL
 """
 from __future__ import annotations
 
@@ -9,7 +9,6 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-START, END = "<!-- findings:start -->", "<!-- findings:end -->"
 
 
 def bn(x: float) -> str:
@@ -65,17 +64,52 @@ def findings(summaries: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def lower_first(label: str) -> str:
+    """'Add back SBC' -> 'add back SBC'; leaves acronyms like 'WACC -1pt' alone."""
+    return label if label[:2].isupper() else label[0].lower() + label[1:]
+
+
+def sanity(s: dict) -> str:
+    """The forecast-free check and the base-to-price bridge, in words."""
+    chk, steps = s["sanity_check"], s["value_bridge"]
+    loosened = [st for st in steps[1:] if st["label"] != "Faster revenue growth"]
+    after = loosened[-1]["value"] if loosened else steps[0]["value"]
+    lines = [
+        f"**Forecast-free check.** At ${s['price']:,.0f}, {s['name']} trades at a {chk['fcf_yield']:.1%} "
+        f"free-cash-flow yield ({s['base_period']} FCF {bn(chk['fcf'])} on a {bn(chk['market_ev'])} enterprise "
+        f"value). At a {s['wacc']:.1%} WACC, that price only works if free cash flow grows "
+        f"~{chk['implied_perpetual_growth']:.1%} a year forever, with no forecast involved. So the gap to the "
+        f"DCF is not a modelling error: it comes from what the market expects.",
+        "",
+        f"**Bridge to the price.** Making every assumption more generous "
+        f"({', '.join(lower_first(st['label']) for st in loosened)}) lifts the DCF from ${steps[0]['value']:,.0f} "
+        f"to only ${after:,.0f}.",
+    ]
+    growth = next((st for st in steps if st["label"] == "Faster revenue growth"), None)
+    if growth:
+        lines[-1] += (f" Closing the rest needs average revenue growth of ~{growth['avg_growth_after']:.0%} a year "
+                      f"for {s['projection_years']} years, versus {growth['avg_growth_before']:.1%} in the model.")
+    return "\n".join(lines)
+
+
+def replace_block(text: str, name: str, body: str) -> str:
+    start, end = f"<!-- {name}:start -->", f"<!-- {name}:end -->"
+    head, rest = text.split(start, 1)
+    _, tail = rest.split(end, 1)
+    return f"{head}{start}\n{body}\n{end}{tail}"
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("tickers", nargs="+")
+    ap.add_argument("--sanity", help="ticker for the Sanity check section")
     args = ap.parse_args()
-    summaries = [json.loads((ROOT / "output" / t.upper() / "summary.json").read_text(encoding="utf-8"))
-                 for t in args.tickers]
+    load = lambda t: json.loads((ROOT / "output" / t.upper() / "summary.json").read_text(encoding="utf-8"))
     readme = ROOT / "README.md"
-    text = readme.read_text(encoding="utf-8")
-    head, rest = text.split(START, 1)
-    _, tail = rest.split(END, 1)
-    readme.write_text(f"{head}{START}\n{findings(summaries)}\n{END}{tail}", encoding="utf-8")
+    text = replace_block(readme.read_text(encoding="utf-8"), "findings", findings([load(t) for t in args.tickers]))
+    if args.sanity:
+        text = replace_block(text, "sanity", sanity(load(args.sanity)))
+    readme.write_text(text, encoding="utf-8")
 
 
 if __name__ == "__main__":

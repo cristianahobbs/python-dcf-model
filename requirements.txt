@@ -1,4 +1,5 @@
 pandas>=2.0
 numpy>=1.24
+matplotlib>=3.7
 # optional: Excel workbook output
 # openpyxl>=3.1

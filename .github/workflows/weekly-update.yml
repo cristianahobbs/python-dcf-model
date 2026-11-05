@@ -48,14 +48,15 @@ jobs:
         run: |
           for t in PLTR ANT AAPL; do cp "output/$t/report.txt" "examples/${t}_report.txt"; done
           python compare.py PLTR ANT AAPL > examples/comparison.txt
-          python update_readme.py PLTR ANT AAPL
+          python charts.py --ranges PLTR AAPL ANT --heatmap ANT --bridge AAPL
+          python update_readme.py PLTR ANT AAPL --sanity AAPL
 
       - name: Commit changes
         if: steps.check.outputs.ok == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add examples README.md
+          git add examples docs README.md
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Weekly update: $(date -u +%F)"
           git push

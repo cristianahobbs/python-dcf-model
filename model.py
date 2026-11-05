@@ -196,6 +196,7 @@ class Assumptions:
     terminal_growth: float = 0.025
     exit_multiple: float = 12.0
     mid_year_convention: bool = True
+    add_back_sbc: bool = False  # street convention; off by default because SBC is a real cost
     target_debt_weight: float | None = None  # None = market-value weights
 
     def to_dict(self) -> dict:
@@ -437,10 +438,11 @@ def project(h: Historicals, a: Assumptions) -> Projection:
             "Net change in cash": cash - prev["cash"],
         }
         nopat = ebit - max(ebit, 0.0) * tax_rate[i]  # no tax credit on operating losses
+        sbc_back = sbc if a.add_back_sbc else 0.0
         fcff[lab] = {
             "EBIT": ebit, "Taxes on EBIT": nopat - ebit, "NOPAT": nopat,
-            "D&A": da, "Capital expenditure": -capex, "Change in NWC": -d_nwc,
-            "Unlevered FCF": nopat + da - capex - d_nwc,
+            "D&A": da, "SBC added back": sbc_back, "Capital expenditure": -capex, "Change in NWC": -d_nwc,
+            "Unlevered FCF": nopat + da + sbc_back - capex - d_nwc,
             "EBITDA": ebit + da,
         }
         prev = {"rev": rev, "cash": cash, "ppe": ppe, "debt": debt, "revolver": revolver,
@@ -541,6 +543,42 @@ def sensitivity_growth_margin(h, a, bridge, shares, wacc, step_g=0.02, step_m=0.
         index=pd.Index([f"{g.iloc[0] + d:.1%} -> {g.iloc[-1] + d:.1%}" for d in gshift],
                        name="Revenue growth (yr1 -> yrN)"),
         columns=pd.Index([f"{m_end + d:.1%}" for d in mshift], name="Terminal EBIT margin"))
+
+
+def value_bridge(h, a, bridge, shares, wacc, price) -> list[dict]:
+    """Walk from the base-case value to the market price by loosening assumptions one at a time
+    (each step is cumulative), then solve for the extra revenue growth that closes the remaining gap."""
+    val = lambda a2, w: dcf(project(h, a2), a2, bridge, shares, w)["per_share"]
+    steps = [{"label": "Base case", "value": val(a, wacc), "detail": f"WACC {wacc:.1%}, g {a.terminal_growth:.1%}"}]
+    cur, w = a, wacc
+
+    def add(label, detail, a2, w2):
+        nonlocal cur, w
+        cur, w = a2, w2
+        steps.append({"label": label, "value": val(cur, w), "detail": detail})
+
+    latest_margin = float(h.income.loc["EBIT"].iloc[-1] / h.income.loc["Revenue"].iloc[-1])
+    if abs(latest_margin - cur.ebit_margin_end) > 0.001:
+        add("Latest-year margin", f"{cur.ebit_margin_end:.1%} -> {latest_margin:.1%}",
+            replace(cur, ebit_margin_start=latest_margin, ebit_margin_end=latest_margin), w)
+    add("Add back SBC", "street convention", replace(cur, add_back_sbc=True), w)
+    add("WACC -1pt", f"{w:.1%} -> {w - 0.01:.1%}", cur, w - 0.01)
+    add("Terminal growth +0.5pt", f"{cur.terminal_growth:.1%} -> {cur.terminal_growth + 0.005:.1%}",
+        replace(cur, terminal_growth=cur.terminal_growth + 0.005), w)
+
+    shift = implied_growth_shift(h, cur, bridge, shares, w, price)
+    if shift is not None:
+        base_g = project(h, cur).income.loc["Revenue growth"].mean()
+        new_g = project(h, replace(cur, growth_shift=cur.growth_shift + shift)).income.loc["Revenue growth"].mean()
+        steps.append({"label": "Faster revenue growth", "value": price,
+                      "detail": f"avg {base_g:.1%} -> {new_g:.1%}/yr", "growth_shift": shift,
+                      "avg_growth_before": float(base_g), "avg_growth_after": float(new_g)})
+    return steps
+
+
+def implied_perpetual_growth(enterprise_value: float, fcf: float, wacc: float) -> float:
+    """Growth rate g such that EV = FCF x (1 + g) / (WACC - g): the forecast-free sanity check."""
+    return (wacc * enterprise_value - fcf) / (enterprise_value + fcf)
 
 
 def implied_growth_shift(h, a, bridge, shares, wacc, target: float, lo=-0.5, hi=1.5) -> float | None:

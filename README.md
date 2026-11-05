@@ -22,15 +22,66 @@ Last updated **2026-11-05** by the weekly [update job](.github/workflows/weekly-
 | Revenue growth (latest year-on-year) | +92% | +1,206% | +15% |
 | Operating margin | 45.6% | -11.6% | 33.0% |
 | DCF value (perpetuity method) | **$95 / share** | **$668.4B equity** | **$168 / share** |
-| Share price | $155.03 | not trading | $343.65 |
+| Share price | $155.30 | not trading | $345.14 |
 | Market-implied revenue CAGR | 36% for 10 years | – | 24% for 5 years |
 
-- **Palantir Technologies Inc.**: the DCF gives $95 a share against a $155 price (WACC 11.2%). The reverse DCF says the price needs revenue to compound at ~36% a year for 10 years, to about $158.5B, versus ~28% (to $84.0B) in the base case, holding margins and the discount rate fixed.
+- **Palantir Technologies Inc.**: the DCF gives $95 a share against a $155 price (WACC 11.2%). The reverse DCF says the price needs revenue to compound at ~36% a year for 10 years, to about $158.9B, versus ~28% (to $84.0B) in the base case, holding margins and the discount rate fixed.
 - **Anthropic, PBC**: base case $668.4B equity value (15x LTM 2026-09-30 revenue), assuming revenue compounds at ~29% a year to $444.9B with a 30% operating margin by year 10. An exit multiple of 20x EBITDA gives $1.30T. Not trading yet, so there is no market price to compare against.
-- **Apple Inc.**: the DCF gives $168 a share against a $344 price (WACC 9.4%). The reverse DCF says the price needs revenue to compound at ~24% a year for 5 years, to about $1.39T, versus ~6% (to $652.9B) in the base case, holding margins and the discount rate fixed.
+- **Apple Inc.**: the DCF gives $168 a share against a $345 price (WACC 9.4%). The reverse DCF says the price needs revenue to compound at ~24% a year for 5 years, to about $1.39T, versus ~6% (to $652.9B) in the base case, holding margins and the discount rate fixed.
 
 These are model outputs under stated assumptions, not investment advice.
 <!-- findings:end -->
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/charts/valuation_ranges-dark.png">
+  <img alt="Valuation ranges from each sensitivity table for Palantir, Apple and Anthropic, with the base case and current share price marked" src="docs/charts/valuation_ranges.png">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/charts/ant_growth_margin-dark.png">
+  <img alt="Anthropic equity value across revenue growth paths and terminal operating margins" src="docs/charts/ant_growth_margin.png">
+</picture>
+
+## Sanity check: why is Apple's DCF half its share price?
+
+A DCF at half the market price usually means a mistake in the model. Two checks show it isn't one here.
+
+<!-- sanity:start -->
+**Forecast-free check.** At $345, Apple Inc. trades at a 2.7% free-cash-flow yield (FY2026 FCF $136.1B on a $4.96T enterprise value). At a 9.4% WACC, that price only works if free cash flow grows ~6.5% a year forever, with no forecast involved. So the gap to the DCF is not a modelling error: it comes from what the market expects.
+
+**Bridge to the price.** Making every assumption more generous (latest-year margin, add back SBC, WACC -1pt, terminal growth +0.5pt) lifts the DCF from $168 to only $238. Closing the rest needs average revenue growth of ~15% a year for 5 years, versus 6.4% in the model.
+<!-- sanity:end -->
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/charts/aapl_bridge-dark.png">
+  <img alt="Waterfall from Apple's base-case DCF value to its share price, showing how much each more generous assumption adds and the extra revenue growth still needed" src="docs/charts/aapl_bridge.png">
+</picture>
+
+## My view
+
+*My opinion as of November 2026, not investment advice. The numbers above refresh weekly; this section
+doesn't.*
+
+**Apple is priced for a growth cycle, not for the business it has been.** Revenue fell 2.8% in FY2023,
+grew 2.0% in FY2024 and 6.4% in FY2025, then jumped 15% in FY2026. The share price effectively assumes
+FY2026 is the new normal for five years. Even with generous assumptions the DCF stops around $240, and on a
+$479B revenue base, sustaining ~15% means adding about $70B of new revenue in year one, rising past $100B a
+year by year five. I think that's
+too much to bank on: Apple is a high-quality business, but at this price it leaves little margin for
+error.
+
+**Palantir looks expensive in my base case, but the verdict rests on two judgment calls.** The base case
+gives ~$95 against ~$155, yet adding back stock-based compensation and taking 1 point off the discount rate
+gets within a few dollars of the price. So the debate isn't really about growth: Palantir is delivering
++92%, and the price only needs ~36% a year for a decade. It's about whether you count ~13% of revenue paid
+in stock as a real cost. I do, so I see Palantir as fully priced to expensive, and duration of growth as
+the key risk.
+
+**For Anthropic, the range is the answer.** The base case is ~$670B, but plausible inputs span roughly
+$250B to $1.7T. When the IPO prices, the useful question is which cell of the growth × margin grid the
+price sits in. Faster growth or higher margins alone don't get to $1T: it takes both, for example ~145%
+year-one growth together with a 35% operating margin, starting from an already ~$68B annualised revenue
+run rate.
 
 ## Quick start
 
@@ -114,8 +165,8 @@ Two GitHub Actions workflows keep the repository current:
 
 - [`tests.yml`](.github/workflows/tests.yml) runs the test suite on every push and pull request.
 - [`weekly-update.yml`](.github/workflows/weekly-update.yml) runs every Monday: it re-values the example
-  companies with fresh prices and any newly filed 10-Qs/10-Ks, regenerates `examples/` and the Findings
-  section above (via `update_readme.py`), and commits the result. If market data is unavailable, it skips
+  companies with fresh prices and any newly filed 10-Qs/10-Ks, regenerates `examples/`, the charts
+  (`charts.py`) and the Findings and Sanity check sections (`update_readme.py`), and commits the result. If market data is unavailable, it skips
   the commit rather than publishing reports without prices.
 
 ## Project structure
@@ -127,7 +178,9 @@ market.py       share price and regression beta (Yahoo Finance chart endpoint)
 model.py        standardisation, assumptions, linked projection, DCF, sensitivities, reverse DCF
 main.py         CLI and report writer (text, CSV, optional Excel)
 compare.py      side-by-side comparison of completed runs
-update_readme.py  regenerates the README Findings section from the latest runs
+update_readme.py  regenerates the README Findings and Sanity check sections from the latest runs
+charts.py       README charts (light + dark PNGs) from the latest runs
+docs/charts/    rendered charts
 .github/        CI: tests on every push, weekly model refresh
 inputs/         hand-entered Anthropic S-1 data and base-case assumptions
 examples/       sample reports (PLTR, ANT, AAPL) and comparison table

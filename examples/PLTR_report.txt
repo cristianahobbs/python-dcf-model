@@ -1,8 +1,8 @@
 Palantir Technologies Inc. (PLTR)  |  CIK 1321655  |  USD millions except per-share
 Source: SEC EDGAR XBRL 10-K + latest 10-Q (LTM) filings
 Profile: growth (10-year projection)  |  Valuation base period: LTM 2026-09-30  |  run date 2026-11-05
-Shares: 2,573.9m (latest diluted weighted average)  |  Price: $155.03  |  Market cap: $399,036m
-Market EV: $388,591m  =  53.3x LTM 2026-09-30 revenue,  115.8x EBITDA
+Shares: 2,573.9m (latest diluted weighted average)  |  Price: $155.30  |  Market cap: $399,731m
+Market EV: $389,286m  =  53.4x LTM 2026-09-30 revenue,  116.0x EBITDA
 
 ====================================================================================================
 INCOME STATEMENT
@@ -108,6 +108,7 @@ KEY ASSUMPTIONS (derived from filings unless marked as override)
   terminal_growth                2.50%
   exit_multiple                  20.00
   mid_year_convention             True
+  add_back_sbc                   False
   target_debt_weight              None
   (beta: 60-month regression vs S&P 500, raw 1.60, Blume-adjusted)
 
@@ -129,6 +130,7 @@ EBIT                  6,375  10,482  15,234   20,107   24,660   28,631   31,929 
 Taxes on EBIT          (87)   (395)   (940)  (1,724)  (2,707)  (3,832)  (5,041)  (6,291)  (7,555)  (8,817)
 NOPAT                 6,288  10,087  14,294   18,383   21,953   24,799   26,888   28,293   29,128   29,517
 D&A                      56      92     133      176      215      250      279      302      320      335
+SBC added back            0       0       0        0        0        0        0        0        0        0
 Capital expenditure    (83)   (136)   (198)    (261)    (321)    (372)    (415)    (450)    (477)    (498)
 Change in NWC         (374)   (504)   (584)    (599)    (559)    (488)    (405)    (326)    (258)    (203)
 Unlevered FCF         5,887   9,538  13,646   17,699   21,289   24,189   26,347   27,819   28,714   29,151
@@ -147,7 +149,7 @@ PV of unlevered FCF   5,581   8,128  10,453   12,187   13,176   13,458   13,176 
   - Non-controlling interest                         117                 117
   Equity value                                   245,327             387,613
   Value per share ($)                              95.31              150.59
-  Upside vs current price                         -38.5%               -2.9%
+  Upside vs current price                         -38.6%               -3.0%
   EV / LTM 2026-09-30 revenue                      32.2x               51.8x
   Terminal value % of EV                           52.8%               70.6%
   Implied exit EV/EBITDA                            8.8x               20.0x
@@ -160,9 +162,22 @@ REVERSE DCF: what the current price implies (perpetuity method, all else equal)
                                                  Base case    Market-implied
   Year-1 revenue growth                              91.7%             99.9%
   10-yr revenue CAGR                                 27.7%             36.1%
-  Year-10 revenue ($m)                              83,996           158,531
-  Value per share ($)                                95.31            155.03
-  Growth path shifted by +8.2% every year to match $155.03.
+  Year-10 revenue ($m)                              83,996           158,878
+  Value per share ($)                                95.31            155.30
+  Growth path shifted by +8.3% every year to match $155.30.
+
+====================================================================================================
+SANITY CHECK: from the base case to the share price
+====================================================================================================
+
+  Forecast-free check: LTM 2026-09-30 FCF $4,054m on market EV $389,286m is a 1.0% yield. At a 11.2% WACC the price needs FCF to grow 10.1% a year forever.
+
+  Cumulative steps (each keeps the ones above):
+  Base case                   WACC 11.2%, g 2.5%              $     95.31
+  Add back SBC                street convention               $    129.16
+  WACC -1pt                   11.2% -> 10.2%                  $    147.49
+  Terminal growth +0.5pt      2.5% -> 3.0%                    $    153.59
+  Faster revenue growth       avg 30.3% -> 30.4% a year       $    155.30
 
 ====================================================================================================
 SENSITIVITY: value per share, $ - WACC vs terminal growth (upside vs current price in brackets)
@@ -170,9 +185,9 @@ SENSITIVITY: value per share, $ - WACC vs terminal growth (upside vs current pri
 
 Terminal growth          1.50%          2.00%          2.50%          3.00%          3.50%
 WACC                                                                                      
-9.25%            115.60 (-25%)  120.35 (-22%)  125.80 (-19%)  132.13 (-15%)  139.56 (-10%)
-10.25%           101.27 (-35%)  104.69 (-32%)  108.56 (-30%)  112.95 (-27%)  118.00 (-24%)
-11.25%            89.95 (-42%)   92.49 (-40%)   95.31 (-39%)   98.48 (-36%)  102.06 (-34%)
+9.25%            115.60 (-26%)  120.35 (-23%)  125.80 (-19%)  132.13 (-15%)  139.56 (-10%)
+10.25%           101.27 (-35%)  104.69 (-33%)  108.56 (-30%)  112.95 (-27%)  118.00 (-24%)
+11.25%            89.95 (-42%)   92.49 (-40%)   95.31 (-39%)   98.48 (-37%)  102.06 (-34%)
 12.25%            80.79 (-48%)   82.71 (-47%)   84.84 (-45%)   87.19 (-44%)   89.81 (-42%)
 13.25%            73.24 (-53%)   74.72 (-52%)   76.35 (-51%)   78.14 (-50%)   80.10 (-48%)
 
@@ -183,10 +198,10 @@ SENSITIVITY: value per share, $ - WACC vs exit EV/EBITDA (upside vs current pric
 Exit EV/EBITDA          12.0x          16.0x          20.0x          24.0x          28.0x
 WACC                                                                                     
 9.25%           126.02 (-19%)   150.83 (-3%)  175.64 (+13%)  200.45 (+29%)  225.25 (+45%)
-10.25%          117.23 (-24%)  139.87 (-10%)   162.52 (+5%)  185.17 (+19%)  207.82 (+34%)
+10.25%          117.23 (-25%)  139.87 (-10%)   162.52 (+5%)  185.17 (+19%)  207.82 (+34%)
 11.25%          109.21 (-30%)  129.90 (-16%)   150.59 (-3%)  171.29 (+10%)  191.98 (+24%)
-12.25%          101.88 (-34%)  120.80 (-22%)  139.72 (-10%)   158.65 (+2%)  177.57 (+15%)
-13.25%           95.18 (-39%)  112.50 (-27%)  129.82 (-16%)   147.13 (-5%)   164.45 (+6%)
+12.25%          101.88 (-34%)  120.80 (-22%)  139.72 (-10%)   158.65 (+2%)  177.57 (+14%)
+13.25%           95.18 (-39%)  112.50 (-28%)  129.82 (-16%)   147.13 (-5%)   164.45 (+6%)
 
 ====================================================================================================
 SENSITIVITY: value per share, $ - revenue growth vs EBIT margin, perpetuity method (upside vs current price in brackets)
@@ -197,8 +212,8 @@ Revenue growth (yr1 -> yrN)
 81.7% -> -5.5%                42.95 (-72%)   48.49 (-69%)   54.03 (-65%)   59.57 (-62%)   65.10 (-58%)
 86.7% -> -0.5%                56.42 (-64%)   63.92 (-59%)   71.42 (-54%)   78.92 (-49%)   86.42 (-44%)
 91.7% -> 4.5%                 74.90 (-52%)   85.11 (-45%)   95.31 (-39%)  105.52 (-32%)  115.73 (-25%)
-96.7% -> 9.5%                100.10 (-35%)  114.02 (-26%)  127.94 (-17%)   141.86 (-8%)   155.79 (+0%)
-101.7% -> 14.5%              134.23 (-13%)   153.22 (-1%)  172.20 (+11%)  191.19 (+23%)  210.18 (+36%)
+96.7% -> 9.5%                100.10 (-36%)  114.02 (-27%)  127.94 (-18%)   141.86 (-9%)   155.79 (+0%)
+101.7% -> 14.5%              134.23 (-14%)   153.22 (-1%)  172.20 (+11%)  191.19 (+23%)  210.18 (+35%)
 
 ====================================================================================================
 NOTES & DATA WARNINGS
