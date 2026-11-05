@@ -14,7 +14,9 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     env:
-      SEC_USER_AGENT: "python-dcf-model github.com/cristianahobbs/python-dcf-model 352884269+cristianahobbs@users.noreply.github.com"
+      # SEC rejects user agents containing URLs or github.com addresses. Set a repository secret
+      # SEC_USER_AGENT ("Name email@domain") to identify yourself; otherwise a generic contact is used.
+      SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'python-dcf-model research admin@example.com' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
