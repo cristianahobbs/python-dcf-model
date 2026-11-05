@@ -558,7 +558,7 @@ def value_bridge(h, a, bridge, shares, wacc, price) -> list[dict]:
         steps.append({"label": label, "value": val(cur, w), "detail": detail})
 
     latest_margin = float(h.income.loc["EBIT"].iloc[-1] / h.income.loc["Revenue"].iloc[-1])
-    if abs(latest_margin - cur.ebit_margin_end) > 0.001:
+    if latest_margin > cur.ebit_margin_end + 0.001:  # only when it is the more generous assumption
         add("Latest-year margin", f"{cur.ebit_margin_end:.1%} -> {latest_margin:.1%}",
             replace(cur, ebit_margin_start=latest_margin, ebit_margin_end=latest_margin), w)
     add("Add back SBC", "street convention", replace(cur, add_back_sbc=True), w)
