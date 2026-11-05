@@ -1,4 +1,4 @@
-name: weekly update
+﻿name: weekly update
 
 on:
   schedule:
@@ -18,8 +18,8 @@ jobs:
       # SEC_USER_AGENT ("Name email@domain") to identify yourself; otherwise a generic contact is used.
       SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'python-dcf-model research admin@example.com' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
