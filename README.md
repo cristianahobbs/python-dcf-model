@@ -22,12 +22,12 @@ Last updated **2026-11-05** by the weekly [update job](.github/workflows/weekly-
 | Revenue growth (latest year-on-year) | +92% | +1,206% | +15% |
 | Operating margin | 45.6% | -11.6% | 33.0% |
 | DCF value (perpetuity method) | **$95 / share** | **$668.4B equity** | **$168 / share** |
-| Share price | $155.30 | not trading | $345.14 |
+| Share price | $154.67 | not trading | $343.08 |
 | Market-implied revenue CAGR | 36% for 10 years | – | 24% for 5 years |
 
-- **Palantir Technologies Inc.**: the DCF gives $95 a share against a $155 price (WACC 11.2%). The reverse DCF says the price needs revenue to compound at ~36% a year for 10 years, to about $158.9B, versus ~28% (to $84.0B) in the base case, holding margins and the discount rate fixed.
+- **Palantir Technologies Inc.**: the DCF gives $95 a share against a $155 price (WACC 11.2%). The reverse DCF says the price needs revenue to compound at ~36% a year for 10 years, to about $158.1B, versus ~28% (to $84.0B) in the base case, holding margins and the discount rate fixed.
 - **Anthropic, PBC**: base case $668.4B equity value (15x LTM 2026-09-30 revenue), assuming revenue compounds at ~29% a year to $444.9B with a 30% operating margin by year 10. An exit multiple of 20x EBITDA gives $1.30T. Not trading yet, so there is no market price to compare against.
-- **Apple Inc.**: the DCF gives $168 a share against a $345 price (WACC 9.4%). The reverse DCF says the price needs revenue to compound at ~24% a year for 5 years, to about $1.39T, versus ~6% (to $652.9B) in the base case, holding margins and the discount rate fixed.
+- **Apple Inc.**: the DCF gives $168 a share against a $343 price (WACC 9.4%). The reverse DCF says the price needs revenue to compound at ~24% a year for 5 years, to about $1.39T, versus ~6% (to $652.9B) in the base case, holding margins and the discount rate fixed.
 
 These are model outputs under stated assumptions, not investment advice.
 <!-- findings:end -->
@@ -47,7 +47,7 @@ These are model outputs under stated assumptions, not investment advice.
 A DCF at half the market price usually means a mistake in the model. Two checks show it isn't one here.
 
 <!-- sanity:start -->
-**Forecast-free check.** At $345, Apple Inc. trades at a 2.7% free-cash-flow yield (FY2026 FCF $136.1B on a $4.96T enterprise value). At a 9.4% WACC, that price only works if free cash flow grows ~6.5% a year forever, with no forecast involved. So the gap to the DCF is not a modelling error: it comes from what the market expects.
+**Forecast-free check.** At $343, Apple Inc. trades at a 2.8% free-cash-flow yield (FY2026 FCF $136.1B on a $4.93T enterprise value). At a 9.4% WACC, that price only works if free cash flow grows ~6.5% a year forever, with no forecast involved. So the gap to the DCF is not a modelling error: it comes from what the market expects.
 
 **Bridge to the price.** Making every assumption more generous (latest-year margin, add back SBC, WACC -1pt, terminal growth +0.5pt) lifts the DCF from $168 to only $238. Closing the rest needs average revenue growth of ~15% a year for 5 years, versus 6.4% in the model.
 <!-- sanity:end -->
