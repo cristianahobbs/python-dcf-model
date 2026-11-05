@@ -1,0 +1,21 @@
+﻿                                          Palantir Technologies Inc.              Anthropic, PBC                  Apple Inc.
+Base period                                           LTM 2026-09-30              LTM 2026-09-30                      FY2026
+Profile / projection years                               growth / 10                 growth / 10                  stable / 5
+Revenue, base period ($bn)                                       7.3                        35.3                       478.8
+Revenue growth, latest YoY                                     91.7%                     1206.2%                       15.1%
+EBIT margin, base period                                       45.6%                      -11.6%                       33.0%
+FCF margin (CFO - capex), base period                          55.6%                        8.7%                       28.4%
+Final-year revenue ($bn)                                        84.0                       444.9                       652.9
+Final-year EBIT margin                                         45.6%                       30.0%                       32.2%
+WACC                                                           11.2%                       12.3%                        9.4%
+DCF enterprise value, perpetuity ($bn)                         234.9                       536.6                     2,383.4
+DCF equity value, perpetuity ($bn)                             245.3                       668.4                     2,440.2
+DCF equity value, exit multiple ($bn)                          387.6                     1,301.3                     4,338.8
+DCF EV / base revenue                                          32.2x                       15.2x                        5.0x
+Terminal value % of EV                                         52.8%                       64.8%                       73.4%
+DCF value per share                                           $95.31                         n/a                     $167.92
+Share price                                                  $155.31                         n/a                     $345.46
+Market cap ($bn)                                               399.8                         n/a                     5,020.3
+Market EV / base revenue                                       53.4x                         n/a                       10.4x
+Market-implied year-1 growth                                   99.9%                         n/a                       25.2%
+Market-implied revenue CAGR                                    36.1%                         n/a                       23.9%

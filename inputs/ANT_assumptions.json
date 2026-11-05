@@ -1,0 +1,37 @@
+{
+  "_about": "Base case for Anthropic. These are judgment calls, not company guidance; keys starting with '_' are ignored.",
+
+  "_growth": "Q3-2026 revenue was $16.96B, a $67.8B annualised run rate, +92% over LTM revenue with no further growth. Year 1 assumes ~10% sequential quarterly growth (Q2->Q3 was +47%), then a steep fade to terminal + 2%.",
+  "revenue_growth_path": [1.40, 0.60, 0.40, 0.28, 0.20, 0.15, 0.11, 0.08, 0.06, 0.045],
+
+  "_margins": "GAAP operating margin was +8% in Q2-2026 and -3% in Q3-2026 (after $5.0B of short-term compute and $2.0B of non-cash donation-matching charges); Adjusted Operating Margin 15-19%. Ramp to 30% GAAP (incl. SBC) at maturity.",
+  "ebit_margin_start": 0.05,
+  "ebit_margin_end": 0.30,
+
+  "_reinvestment": "Compute is mostly bought as a service (in opex); owned capex is rising. D&A converges toward capex as the asset base matures.",
+  "capex_pct_revenue": 0.08,
+  "capex_pct_revenue_end": 0.06,
+  "da_pct_revenue": 0.008,
+  "da_pct_revenue_end": 0.05,
+
+  "_working_capital": "Set on the Q3-2026 run rate rather than LTM revenue, which understates the current scale of the business.",
+  "dso": 42,
+  "dio": 0,
+  "dpo": 85,
+  "other_ca_pct_revenue": 0.02,
+  "other_cl_pct_revenue": 0.035,
+
+  "_tax": "Large tax losses shield early profits; ramps to a 23% statutory-plus-state rate.",
+  "tax_rate": 0.0,
+  "tax_rate_end": 0.23,
+
+  "payout_ratio": 0.0,
+  "buyback_pct_net_income": 0.0,
+  "cash_yield": 0.04,
+
+  "_discount_rate": "No trading history, so beta is set rather than regressed: 1.6, above high-growth software peers, for customer concentration (top 5 customers ~21% of Q3-2026 revenue), model-cycle risk (models released in the prior six months were >80% of Q3 revenue) and compute-supply risk. No debt.",
+  "beta": 1.6,
+  "target_debt_weight": 0.0,
+  "terminal_growth": 0.025,
+  "exit_multiple": 20.0
+}

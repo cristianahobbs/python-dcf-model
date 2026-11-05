@@ -1,0 +1,203 @@
+Anthropic, PBC (ANT)  |  CIK 2130357  |  USD millions except per-share
+Source: Form S-1/A (Amendment No. 1) filed 2026-11-02 (hand-entered: ANT.json)
+Profile: growth (10-year projection)  |  Valuation base period: LTM 2026-09-30  |  run date 2026-11-05
+Shares: not available - values shown as total equity value ($bn); pass --shares for per-share
+  * No gross profit is reported; cogs = 'Compute and infrastructure' (includes model-training compute, so it overstates a cost of revenue).
+  * EBIT = GAAP operating income (loss): includes stock-based compensation, non-cash donation-matching charges, and the one-off $1.5B Bartz settlement (Q3 2025, so it drops out of LTM Sep-2026).
+  * Changes in fair value of convertible notes, derivatives and SAFEs ($94.3B in 9M 2026) are non-operating and non-cash; they sit below EBIT and do not affect FCFF.
+  * capex = purchases of property and equipment + prepayments for leased assets and equipment.
+  * Convertible notes payable convert into common stock at the IPO, so they are reclassified to equity (pro forma). Redeemable convertible preferred stock is already outside liabilities.
+  * Balance sheets are only disclosed for Dec-2024, Dec-2025 and Sep-2026, so FY2023 is not in the modelled history.
+  * Pro forma share count and the IPO price range are blank in this S-1/A; valuation is reported as total equity value unless --shares is given.
+  * Interest expense (finance leases only) is not reported separately; it is within other income (expense).
+
+====================================================================================================
+INCOME STATEMENT
+====================================================================================================
+
+                           FY2024    FY2025 LTM 2026-09-30   Sep-27E   Sep-28E    Sep-29E    Sep-30E    Sep-31E    Sep-32E    Sep-33E    Sep-34E    Sep-35E    Sep-36E
+Revenue                       386     4,585         35,282    84,677   135,483    189,676    242,785    291,342    335,044    371,899    401,650    425,749    444,908
+Cost of revenue           (2,522)   (7,326)       (21,753)  (52,207)  (83,532)  (116,944)  (149,688)  (179,626)  (206,570)  (229,293)  (247,636)  (262,494)  (274,307)
+Gross profit              (2,136)   (2,741)         13,529    32,470    51,951     72,732     93,097    111,716    128,474    142,606    154,014    163,255    170,602
+Operating expenses          (844)   (5,319)       (17,625)  (28,236)  (41,414)   (52,711)   (60,725)   (64,778)   (65,188)   (62,028)   (55,833)   (47,357)   (37,129)
+EBIT                      (2,980)   (8,060)        (4,096)     4,234    10,538     20,021     32,371     46,938     63,286     80,578     98,181    115,898    133,472
+Interest expense                0         0              0         0         0          0          0          0          0          0          0          0          0
+Other non-operating, net  (5,328)  (33,885)      (116,376)     5,274     5,825      6,787      8,280     10,430     13,321     17,021     21,549     26,894     33,041
+Pre-tax income            (8,308)  (41,945)      (120,472)     9,508    16,363     26,808     40,652     57,368     76,607     97,599    119,730    142,793    166,513
+Income tax                    (1)      (20)          (425)         0     (418)    (1,370)    (3,117)    (5,864)    (9,789)   (14,965)   (21,418)   (29,193)   (38,298)
+Net income                (8,309)  (41,965)      (120,897)     9,508    15,945     25,438     37,535     51,504     66,818     82,634     98,312    113,600    128,215
+D&A (memo)                     21        40            266       677     1,716      3,288      5,341      7,769     10,498     13,388     16,334     19,301     22,245
+EBITDA (memo)             (2,959)   (8,020)        (3,830)     4,911    12,254     23,309     37,713     54,708     73,784     93,966    114,515    135,199    155,718
+SBC (memo)                    192     1,158          3,829     9,190    14,703     20,585     26,348     31,618     36,361     40,361     43,589     46,205     48,284
+Revenue growth                  -         -              -    140.0%     60.0%      40.0%      28.0%      20.0%      15.0%      11.0%       8.0%       6.0%       4.5%
+EBIT margin                     -         -              -      5.0%      7.8%      10.6%      13.3%      16.1%      18.9%      21.7%      24.4%      27.2%      30.0%
+
+====================================================================================================
+BALANCE SHEET
+====================================================================================================
+
+                              FY2024  FY2025 LTM 2026-09-30  Sep-27E  Sep-28E  Sep-29E  Sep-30E  Sep-31E  Sep-32E  Sep-33E  Sep-34E  Sep-35E    Sep-36E
+Cash & ST investments          3,141  20,277        131,845  145,634  169,671  207,008  260,740  333,026  425,524  538,717  672,362  826,025    998,908
+Receivables                       95     909          7,892    9,744   15,590   21,826   27,937   33,524   38,553   42,794   46,217   48,990     51,195
+Inventory                          0       0              0        0        0        0        0        0        0        0        0        0          0
+Other current assets           2,076   2,560          1,283    1,694    2,710    3,794    4,856    5,827    6,701    7,438    8,033    8,515      8,898
+PP&E, net                         19     146          3,061    9,158   17,979   29,023   41,486   54,434   67,017   78,422   87,972   95,162     99,612
+LT investments                     0       0              0        0        0        0        0        0        0        0        0        0          0
+Other non-current assets       2,421     769         10,239   10,239   10,239   10,239   10,239   10,239   10,239   10,239   10,239   10,239     10,239
+Total assets                   7,752  24,661        154,320  176,468  216,189  271,889  345,257  437,050  548,034  677,609  824,823  988,931  1,168,852
+Accounts payable                 333   2,511          9,426   12,158   19,453   27,234   34,859   41,831   48,105   53,397   57,669   61,129     63,880
+Other current liabilities         41     306          2,245    2,964    4,742    6,639    8,497   10,197   11,727   13,016   14,058   14,901     15,572
+Debt                               0       0              0        0        0        0        0        0        0        0        0        0          0
+Revolver                           0       0              0        0        0        0        0        0        0        0        0        0          0
+Other non-current liabilities    189     903          4,510    4,510    4,510    4,510    4,510    4,510    4,510    4,510    4,510    4,510      4,510
+Total liabilities                563   3,720         16,181   19,632   28,704   38,382   47,866   56,538   64,342   70,923   76,236   80,540     83,961
+Non-controlling interest           0       0              0        0        0        0        0        0        0        0        0        0          0
+Shareholders' equity           7,189  20,941        138,139  156,836  187,484  233,507  297,391  380,512  483,692  606,686  748,587  908,391  1,084,891
+Total liabilities & equity     7,752  24,661        154,320  176,468  216,189  271,889  345,257  437,050  548,034  677,609  824,823  988,931  1,168,852
+Balance check                      0       0              0        0        0        0        0        0        0        0        0        0          0
+
+====================================================================================================
+CASH FLOW STATEMENT
+====================================================================================================
+
+                               FY2024    FY2025 LTM 2026-09-30  Sep-27E   Sep-28E   Sep-29E   Sep-30E   Sep-31E   Sep-32E   Sep-33E   Sep-34E   Sep-35E   Sep-36E
+Net income                    (8,309)  (41,965)      (120,897)    9,508    15,945    25,438    37,535    51,504    66,818    82,634    98,312   113,600   128,215
+D&A                                21        40            266      677     1,716     3,288     5,341     7,769    10,498    13,388    16,334    19,301    22,245
+Stock-based compensation          192     1,158          3,829    9,190    14,703    20,585    26,348    31,618    36,361    40,361    43,589    46,205    48,284
+Working capital & other         2,404    38,130        122,758    1,188     2,211     2,358     2,311     2,113     1,901     1,604     1,295     1,049       834
+Cash from operations          (5,692)   (2,637)          5,956   20,563    34,575    51,668    71,536    93,004   115,579   137,986   159,529   180,154   199,578
+Capital expenditure              (15)     (185)        (2,903)  (6,774)  (10,538)  (14,331)  (17,804)  (20,718)  (23,081)  (24,793)  (25,884)  (26,491)  (26,694)
+Other investing                   (7)   (2,892)       (34,713)        0         0         0         0         0         0         0         0         0         0
+Cash from investing              (22)   (3,077)       (37,616)  (6,774)  (10,538)  (14,331)  (17,804)  (20,718)  (23,081)  (24,793)  (25,884)  (26,491)  (26,694)
+Dividends                           0         0              0        0         0         0         0         0         0         0         0         0         0
+Share repurchases                   0     (149)              0        0         0         0         0         0         0         0         0         0         0
+Debt & other financing          7,248    20,109        112,187        0         0         0         0         0         0         0         0         0         0
+Cash from financing             7,248    19,960        112,187        0         0         0         0         0         0         0         0         0         0
+Free cash flow (CFO - capex)  (5,707)   (2,822)          3,053   13,789    24,037    37,337    53,731    72,286    92,498   113,193   133,645   153,663   172,884
+Net change in cash                  -         -              -   13,789    24,037    37,337    53,731    72,286    92,498   113,193   133,645   153,663   172,884
+
+====================================================================================================
+KEY ASSUMPTIONS (derived from filings unless marked as override)
+====================================================================================================
+
+  profile                       growth
+  projection_years                  10
+  revenue_growth_start         150.00%
+  revenue_growth_end             4.50%
+  revenue_growth_path       140.0% 60.0% 40.0% 28.0% 20.0% 15.0% 11.0% 8.0% 6.0% 4.5%  (replaces start/end/decay)  <- override
+  growth_decay                  70.00%
+  growth_shift                   0.00%
+  gross_margin                  38.35%
+  ebit_margin_start              5.00%  <- override
+  ebit_margin_end               30.00%  <- override
+  margin_shift                   0.00%
+  tax_rate                       0.00%  <- override
+  tax_rate_end                  23.00%  <- override
+  da_pct_revenue                 0.80%  <- override
+  da_pct_revenue_end             5.00%  <- override
+  capex_pct_revenue              8.00%  <- override
+  capex_pct_revenue_end          6.00%  <- override
+  sbc_pct_revenue               10.85%
+  dso                          42.0 days  <- override
+  dio                           0.0 days  <- override
+  dpo                          85.0 days  <- override
+  other_ca_pct_revenue           2.00%  <- override
+  other_cl_pct_revenue           3.50%  <- override
+  payout_ratio                   0.00%  <- override
+  buyback_pct_net_income         0.00%  <- override
+  annual_debt_change             0.00%
+  min_cash_pct_revenue           5.00%
+  cost_of_debt                   5.75%
+  cash_yield                     4.00%  <- override
+  risk_free_rate                 4.25%
+  equity_risk_premium            5.00%
+  beta                            1.60  <- override
+  terminal_growth                2.50%  <- override
+  exit_multiple                  20.00  <- override
+  mid_year_convention             True
+  target_debt_weight             0.00%  <- override
+
+====================================================================================================
+WACC
+====================================================================================================
+
+  Cost of equity      12.25%  = 4.25% + 1.60 x 5.00%
+  After-tax Kd        5.75%  = 5.75% x (1 - 0.0%)
+  Weights (E / D)     100.0% / 0.0%
+  WACC                12.25%
+
+====================================================================================================
+DISCOUNTED CASH FLOW
+====================================================================================================
+
+                     Sep-27E   Sep-28E   Sep-29E   Sep-30E   Sep-31E   Sep-32E   Sep-33E   Sep-34E   Sep-35E   Sep-36E
+EBIT                   4,234    10,538    20,021    32,371    46,938    63,286    80,578    98,181   115,898   133,472
+Taxes on EBIT              0     (269)   (1,023)   (2,482)   (4,798)   (8,087)  (12,355)  (17,564)  (23,695)  (30,699)
+NOPAT                  4,234    10,268    18,998    29,890    42,140    55,199    68,223    80,618    92,204   102,774
+D&A                      677     1,716     3,288     5,341     7,769    10,498    13,388    16,334    19,301    22,245
+Capital expenditure  (6,774)  (10,538)  (14,331)  (17,804)  (20,718)  (23,081)  (24,793)  (25,884)  (26,491)  (26,694)
+Change in NWC          1,188     2,211     2,358     2,311     2,113     1,901     1,604     1,295     1,049       834
+Unlevered FCF          (675)     3,657    10,313    19,737    31,305    44,518    58,421    72,362    86,062    99,158
+EBITDA                 4,911    12,254    23,309    37,713    54,708    73,784    93,966   114,515   135,199   155,718
+Discount factor       0.9439    0.8409    0.7491    0.6673    0.5945    0.5296    0.4718    0.4203    0.3745    0.3336
+PV of unlevered FCF    (637)     3,075     7,725    13,172    18,611    23,578    27,565    30,417    32,227    33,079
+
+                                       Perpetuity growth       Exit multiple
+  PV of projected FCF                            188,814             188,814
+  Terminal value                               1,042,434           3,114,357
+  PV of terminal value                           347,759             980,629
+  Enterprise value                               536,572           1,169,443
+  + Cash & ST investments                        131,845             131,845
+  + LT investments                                     0                   0
+  - Debt                                               0                   0
+  - Non-controlling interest                           0                   0
+  Equity value                                   668,417           1,301,288
+  EV / LTM 2026-09-30 revenue                      15.2x               33.1x
+  Terminal value % of EV                           64.8%               83.9%
+  Implied exit EV/EBITDA                            6.7x               20.0x
+  Implied perpetuity growth                        2.50%               8.79%
+
+====================================================================================================
+SENSITIVITY: equity value, $bn - WACC vs terminal growth
+====================================================================================================
+
+Terminal growth 1.50% 2.00% 2.50% 3.00% 3.50%
+WACC                                         
+10.25%            800   830   864   903   947
+11.25%            707   730   754   782   813
+12.25%            633   650   668   689   712
+13.25%            572   585   600   615   632
+14.25%            522   532   543   556   569
+
+====================================================================================================
+SENSITIVITY: equity value, $bn - WACC vs exit EV/EBITDA
+====================================================================================================
+
+Exit EV/EBITDA  12.0x  16.0x  20.0x  24.0x  28.0x
+WACC                                             
+10.25%          1,050  1,284  1,519  1,754  1,989
+11.25%            976  1,190  1,405  1,619  1,834
+12.25%            909  1,105  1,301  1,497  1,694
+13.25%            848  1,028  1,207  1,387  1,566
+14.25%            793    957  1,121  1,286  1,450
+
+====================================================================================================
+SENSITIVITY: equity value, $bn - revenue growth vs EBIT margin, perpetuity method
+====================================================================================================
+
+Terminal EBIT margin        20.0% 25.0%  30.0%  35.0%  40.0%
+Revenue growth (yr1 -> yrN)                                 
+130.0% -> -5.5%               246   316    386    457    527
+135.0% -> -0.5%               315   409    503    597    690
+140.0% -> 4.5%                417   543    668    794    920
+145.0% -> 9.5%                561   731    901  1,070  1,239
+150.0% -> 14.5%               765   994  1,223  1,451  1,680
+
+====================================================================================================
+NOTES & DATA WARNINGS
+====================================================================================================
+
+  - FCFF = EBIT - tax on positive EBIT + D&A - capex - change in NWC. SBC is a real cost (not added back).
+  - Operating leases are excluded from debt; 'Other' lines are residuals against reported subtotals.
+  - Interest is charged on opening balances (no circularity); a revolver keeps cash >= minimum cash.
+  - Equity bridge uses the balance sheet at LTM 2026-09-30; cash flows are discounted from that date.
