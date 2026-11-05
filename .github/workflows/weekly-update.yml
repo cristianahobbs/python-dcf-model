@@ -1,0 +1,59 @@
+name: weekly update
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"  # Mondays 13:00 UTC
+  workflow_dispatch:       # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+
+concurrency: weekly-update
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      SEC_USER_AGENT: "python-dcf-model github.com/cristianahobbs/python-dcf-model 352884269+cristianahobbs@users.noreply.github.com"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m unittest discover -s tests
+
+      - name: Run models
+        run: |
+          python main.py PLTR
+          python main.py AAPL
+          python main.py --input inputs/ANT.json --assumptions inputs/ANT_assumptions.json
+
+      - name: Check market data
+        id: check
+        run: |
+          python - <<'EOF'
+          import json, os
+          ok = all(json.load(open(f"output/{t}/summary.json"))["price"] for t in ("PLTR", "AAPL"))
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"ok={'true' if ok else 'false'}\n")
+          if not ok:
+              print("::warning::Share prices unavailable; keeping last week's reports.")
+          EOF
+
+      - name: Refresh examples and README
+        if: steps.check.outputs.ok == 'true'
+        run: |
+          for t in PLTR ANT AAPL; do cp "output/$t/report.txt" "examples/${t}_report.txt"; done
+          python compare.py PLTR ANT AAPL > examples/comparison.txt
+          python update_readme.py PLTR ANT AAPL
+
+      - name: Commit changes
+        if: steps.check.outputs.ok == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add examples README.md
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Weekly update: $(date -u +%F)"
+          git push

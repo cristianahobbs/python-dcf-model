@@ -1,5 +1,8 @@
 # python-dcf-model
 
+[![tests](https://github.com/cristianahobbs/python-dcf-model/actions/workflows/tests.yml/badge.svg)](https://github.com/cristianahobbs/python-dcf-model/actions/workflows/tests.yml)
+[![weekly update](https://github.com/cristianahobbs/python-dcf-model/actions/workflows/weekly-update.yml/badge.svg)](https://github.com/cristianahobbs/python-dcf-model/actions/workflows/weekly-update.yml)
+
 A three-statement financial model and discounted cash flow (DCF) valuation engine in Python, built
 directly from SEC filings. Give it a ticker and it pulls the company's 10-K/10-Q data from EDGAR, builds
 linked income statement / balance sheet / cash flow projections, values the business two ways, runs
@@ -10,29 +13,24 @@ as a worked example of valuing a pre-IPO company from hand-transcribed filings.
 
 ## Findings
 
-Market data as of 5 November 2026. Full reports are in [`examples/`](examples/).
+<!-- findings:start -->
+Last updated **2026-11-05** by the weekly [update job](.github/workflows/weekly-update.yml). Full reports are in [`examples/`](examples/).
 
-| | Palantir (PLTR) | Anthropic (pre-IPO) | Apple (AAPL) |
+| | Palantir Technologies Inc. (PLTR) | Anthropic, PBC (ANT) | Apple Inc. (AAPL) |
 |---|---|---|---|
-| Revenue, last 12 months | $7.3B | $35.3B | $478.8B |
-| Revenue growth | +92% | +1,206% (9M YoY) | +15% |
-| Operating margin | 45.6% | −11.6% | 33.0% |
-| DCF value (perpetuity method) | **$95 / share** | **$668B equity** | **$168 / share** |
-| Share price | $155 | not yet trading | $345 |
+| Revenue, FY2026 / LTM 2026-09-30 | $7.3B | $35.3B | $478.8B |
+| Revenue growth (latest year-on-year) | +92% | +1,206% | +15% |
+| Operating margin | 45.6% | -11.6% | 33.0% |
+| DCF value (perpetuity method) | **$95 / share** | **$668.4B equity** | **$168 / share** |
+| Share price | $155.30 | not trading | $345.14 |
 | Market-implied revenue CAGR | 36% for 10 years | – | 24% for 5 years |
 
-- **Palantir**: even at a 45.6% operating margin held for a decade, the price requires revenue to
-  compound at ~36% a year to about $159B by 2036, versus ~28% (to $84B) in the base case, which already
-  assumes growth decays from 92%.
-- **Anthropic**: revenue went from $41M (2023) to a $68B annualised run rate (Q3 2026). The base case
-  ($668B equity, 15x LTM revenue) assumes growth fading from 140% to 4.5% and margins expanding to 30%.
-  An exit multiple of 20x EBITDA gives $1.3T; [the sensitivity tables](examples/ANT_report.txt) show the
-  range.
-- **Apple**: a textbook mature-company DCF at a 9.4% WACC gives roughly half the share price. The reverse
-  DCF puts a number on the gap: ~24% annual growth, versus ~8% over the last three years and ~6% in the
-  base case.
+- **Palantir Technologies Inc.**: the DCF gives $95 a share against a $155 price (WACC 11.2%). The reverse DCF says the price needs revenue to compound at ~36% a year for 10 years, to about $158.9B, versus ~28% (to $84.0B) in the base case, holding margins and the discount rate fixed.
+- **Anthropic, PBC**: base case $668.4B equity value (15x LTM 2026-09-30 revenue), assuming revenue compounds at ~29% a year to $444.9B with a 30% operating margin by year 10. An exit multiple of 20x EBITDA gives $1.30T. Not trading yet, so there is no market price to compare against.
+- **Apple Inc.**: the DCF gives $168 a share against a $345 price (WACC 9.4%). The reverse DCF says the price needs revenue to compound at ~24% a year for 5 years, to about $1.39T, versus ~6% (to $652.9B) in the base case, holding margins and the discount rate fixed.
 
 These are model outputs under stated assumptions, not investment advice.
+<!-- findings:end -->
 
 ## Quick start
 
@@ -110,6 +108,16 @@ references. Modelling decisions documented in that file:
 - **Shares**: the share count and price range were blank in the filing, so value is reported as total
   equity.
 
+## Automation
+
+Two GitHub Actions workflows keep the repository current:
+
+- [`tests.yml`](.github/workflows/tests.yml) runs the test suite on every push and pull request.
+- [`weekly-update.yml`](.github/workflows/weekly-update.yml) runs every Monday: it re-values the example
+  companies with fresh prices and any newly filed 10-Qs/10-Ks, regenerates `examples/` and the Findings
+  section above (via `update_readme.py`), and commits the result. If market data is unavailable, it skips
+  the commit rather than publishing reports without prices.
+
 ## Project structure
 
 ```
@@ -119,6 +127,8 @@ market.py       share price and regression beta (Yahoo Finance chart endpoint)
 model.py        standardisation, assumptions, linked projection, DCF, sensitivities, reverse DCF
 main.py         CLI and report writer (text, CSV, optional Excel)
 compare.py      side-by-side comparison of completed runs
+update_readme.py  regenerates the README Findings section from the latest runs
+.github/        CI: tests on every push, weekly model refresh
 inputs/         hand-entered Anthropic S-1 data and base-case assumptions
 examples/       sample reports (PLTR, ANT, AAPL) and comparison table
 tests/          unittest suite (offline)

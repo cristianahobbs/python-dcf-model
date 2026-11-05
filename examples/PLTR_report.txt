@@ -1,8 +1,8 @@
 Palantir Technologies Inc. (PLTR)  |  CIK 1321655  |  USD millions except per-share
 Source: SEC EDGAR XBRL 10-K + latest 10-Q (LTM) filings
 Profile: growth (10-year projection)  |  Valuation base period: LTM 2026-09-30  |  run date 2026-11-05
-Shares: 2,573.9m (latest diluted weighted average)  |  Price: $155.31  |  Market cap: $399,754m
-Market EV: $389,309m  =  53.4x LTM 2026-09-30 revenue,  116.0x EBITDA
+Shares: 2,573.9m (latest diluted weighted average)  |  Price: $155.30  |  Market cap: $399,731m
+Market EV: $389,286m  =  53.4x LTM 2026-09-30 revenue,  116.0x EBITDA
 
 ====================================================================================================
 INCOME STATEMENT
@@ -160,9 +160,9 @@ REVERSE DCF: what the current price implies (perpetuity method, all else equal)
                                                  Base case    Market-implied
   Year-1 revenue growth                              91.7%             99.9%
   10-yr revenue CAGR                                 27.7%             36.1%
-  Year-10 revenue ($m)                              83,996           158,889
-  Value per share ($)                                95.31            155.31
-  Growth path shifted by +8.3% every year to match $155.31.
+  Year-10 revenue ($m)                              83,996           158,878
+  Value per share ($)                                95.31            155.30
+  Growth path shifted by +8.3% every year to match $155.30.
 
 ====================================================================================================
 SENSITIVITY: value per share, $ - WACC vs terminal growth (upside vs current price in brackets)

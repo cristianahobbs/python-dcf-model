@@ -304,8 +304,10 @@ def main() -> None:
         "tv_share_of_ev": gordon["tv_share_of_ev"],
         "per_share": None if equity_mode else gordon["per_share"],
         "price": price, "market_cap": market_cap, "market_ev": ev_now,
+        "base_revenue_cagr": float((proj.income.loc["Revenue"].iloc[-1] / ltm_rev) ** (1 / len(proj.income.columns)) - 1),
         "implied_year1_growth": reverse and reverse["year1_growth"],
         "implied_revenue_cagr": reverse and reverse["revenue_cagr"],
+        "implied_final_year_revenue": reverse and reverse["final_year_revenue"],
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2, default=float))
     keys = [key for _, key in rows] + ["equity_value", "per_share", "tv_share_of_ev"]
