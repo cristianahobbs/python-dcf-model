@@ -1,4 +1,4 @@
-﻿                                          Palantir Technologies Inc.              Anthropic, PBC                  Apple Inc.
+                                          Palantir Technologies Inc.              Anthropic, PBC                  Apple Inc.
 Base period                                           LTM 2026-09-30              LTM 2026-09-30                      FY2026
 Profile / projection years                               growth / 10                 growth / 10                  stable / 5
 Revenue, base period ($bn)                                       7.3                        35.3                       478.8
@@ -8,14 +8,14 @@ FCF margin (CFO - capex), base period                          55.6%            
 Final-year revenue ($bn)                                        84.0                       444.9                       652.9
 Final-year EBIT margin                                         45.6%                       30.0%                       32.2%
 WACC                                                           11.2%                       12.3%                        9.4%
-DCF enterprise value, perpetuity ($bn)                         234.9                       536.6                     2,383.4
-DCF equity value, perpetuity ($bn)                             245.3                       668.4                     2,440.3
-DCF equity value, exit multiple ($bn)                          387.6                     1,301.3                     4,338.8
+DCF enterprise value, perpetuity ($bn)                         234.9                       536.6                     2,383.6
+DCF equity value, perpetuity ($bn)                             245.3                       668.4                     2,440.4
+DCF equity value, exit multiple ($bn)                          387.6                     1,301.3                     4,338.9
 DCF EV / base revenue                                          32.2x                       15.2x                        5.0x
 Terminal value % of EV                                         52.8%                       64.8%                       73.4%
-DCF value per share                                           $95.31                         n/a                     $167.92
-Share price                                                  $155.30                         n/a                     $345.14
-Market cap ($bn)                                               399.7                         n/a                     5,015.6
-Market EV / base revenue                                       53.4x                         n/a                       10.4x
-Market-implied year-1 growth                                   99.9%                         n/a                       25.1%
-Market-implied revenue CAGR                                    36.1%                         n/a                       23.8%
+DCF value per share                                           $95.31                         n/a                     $167.93
+Share price                                                  $155.03                         n/a                     $343.65
+Market cap ($bn)                                               399.0                         n/a                     4,994.0
+Market EV / base revenue                                       53.3x                         n/a                       10.3x
+Market-implied year-1 growth                                   99.9%                         n/a                       25.0%
+Market-implied revenue CAGR                                    36.1%                         n/a                       23.7%
