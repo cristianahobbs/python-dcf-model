@@ -1,6 +1,6 @@
 Anthropic, PBC (ANT)  |  CIK 2130357  |  USD millions except per-share
 Source: Form S-1/A (Amendment No. 1) filed 2026-11-02 (hand-entered: ANT.json)
-Profile: growth (10-year projection)  |  Valuation base period: LTM 2026-09-30  |  run date 2026-11-16
+Profile: growth (10-year projection)  |  Valuation base period: LTM 2026-09-30  |  run date 2026-11-23
 Shares: not available - values shown as total equity value ($bn); pass --shares for per-share
   * No gross profit is reported; cogs = 'Compute and infrastructure' (includes model-training compute, so it overstates a cost of revenue).
   * EBIT = GAAP operating income (loss): includes stock-based compensation, non-cash donation-matching charges, and the one-off $1.5B Bartz settlement (Q3 2025, so it drops out of LTM Sep-2026).

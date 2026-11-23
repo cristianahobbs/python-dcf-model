@@ -7,15 +7,15 @@ EBIT margin, base period                                       45.6%            
 FCF margin (CFO - capex), base period                          55.6%                        8.7%                       28.4%
 Final-year revenue ($bn)                                        84.0                       444.9                       652.9
 Final-year EBIT margin                                         45.6%                       30.0%                       32.2%
-WACC                                                           11.3%                       12.3%                        9.4%
-DCF enterprise value, perpetuity ($bn)                         233.4                       536.6                     2,382.5
-DCF equity value, perpetuity ($bn)                             243.8                       668.4                     2,439.3
-DCF equity value, exit multiple ($bn)                          386.2                     1,301.3                     4,338.3
-DCF EV / base revenue                                          32.0x                       15.2x                        5.0x
-Terminal value % of EV                                         52.6%                       64.8%                       73.4%
-DCF value per share                                           $94.73                         n/a                     $167.86
-Share price                                                  $162.26                         n/a                     $354.81
-Market cap ($bn)                                               417.6                         n/a                     5,156.1
-Market EV / base revenue                                       55.9x                         n/a                       10.6x
-Market-implied year-1 growth                                  100.8%                         n/a                       25.9%
-Market-implied revenue CAGR                                    37.0%                         n/a                       24.6%
+WACC                                                           11.6%                       12.3%                        9.1%
+DCF enterprise value, perpetuity ($bn)                         224.8                       536.6                     2,470.4
+DCF equity value, perpetuity ($bn)                             235.2                       668.4                     2,527.2
+DCF equity value, exit multiple ($bn)                          377.5                     1,301.3                     4,383.7
+DCF EV / base revenue                                          30.8x                       15.2x                        5.2x
+Terminal value % of EV                                         51.5%                       64.8%                       74.2%
+DCF value per share                                           $91.38                         n/a                     $173.91
+Share price                                                  $143.49                         n/a                     $342.56
+Market cap ($bn)                                               369.3                         n/a                     4,978.1
+Market EV / base revenue                                       49.2x                         n/a                       10.3x
+Market-implied year-1 growth                                   99.4%                         n/a                       24.0%
+Market-implied revenue CAGR                                    35.5%                         n/a                       22.7%
